@@ -607,10 +607,6 @@ function scheduleCommitmentPopup() {
   commitmentPopupTimer =
     setTimeout(() => {
 
-      // Check again after 4 seconds.
-      // This prevents the popup from appearing
-      // if the user already left Commitments
-      // or already accepted/rejected it.
       checkCommitmentNotificationState()
 
 
@@ -665,8 +661,6 @@ async function detectRecurringCommitments() {
 
     checkCommitmentNotificationState()
 
-    // If the app happens to open directly
-    // on Commitments, still wait 4 seconds.
     if (
       route.path === '/commitments'
     ) {
@@ -681,7 +675,7 @@ async function detectRecurringCommitments() {
 
     const response =
       await fetch(
-        'http://127.0.0.1:8000/detect-commitments',
+        'https://jeebik-backend.onrender.com/detect-commitments',
         {
           method: 'POST',
 
@@ -747,8 +741,6 @@ async function detectRecurringCommitments() {
         true
 
 
-      // Only schedule the popup if the user
-      // is currently inside Commitments.
       if (
         route.path === '/commitments'
       ) {
@@ -790,8 +782,6 @@ watch(
       pendingCommitment.value
     ) {
 
-      // User entered Commitments:
-      // wait exactly 4 seconds.
       scheduleCommitmentPopup()
     }
   }
@@ -819,8 +809,6 @@ onMounted(() => {
   detectRecurringCommitments()
 
 
-  // Direct opening / refresh on Commitments:
-  // also wait 4 seconds.
   if (
     route.path === '/commitments' &&
     hasCommitmentNotification.value &&

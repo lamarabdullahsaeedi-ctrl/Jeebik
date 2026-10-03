@@ -205,7 +205,7 @@ async function loadReplanning() {
     }
 
     const response = await fetch(
-      'http://127.0.0.1:8000/replan',
+      'https://jeebik-backend.onrender.com/replan',
       {
         method: 'POST',
 

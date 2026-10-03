@@ -140,7 +140,7 @@ async function getAnalysis() {
 
   try {
     const response = await fetch(
-      'http://127.0.0.1:8000/analyze-plan',
+      'https://jeebik-backend.onrender.com/analyze-plan',
       {
         method: 'POST',
 
